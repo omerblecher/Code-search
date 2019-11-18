@@ -1,0 +1,31 @@
+﻿
+@model CodeSearchDemo.Models.CompareModel
+
+@{
+    ViewBag.Title = "Compare Files View";
+}
+
+
+@if(Request.UrlReferrer != null)
+{
+    <button type="button" onclick="history.go(-1); return false;" >Back</button>
+} 
+
+<p>
+    @Html.ValidationMessage("Error")
+</p>
+
+<p>
+    @Html.ValidationMessage("Same", new { style = "color: green; font-size: 20px" })
+</p>
+
+
+
+@Html.Raw(@Model.CompareResultsHtml)
+
+
+
+@if (Request.UrlReferrer != null)
+{
+    <button type="button" onclick=" history.go(-1); return false; " >Back</button>
+}

@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "UMD Code search";
+}
+
+ <p> <b>Text:</b> @Html.TextBox("token") 
+
+            <b>Branch:</b> @Html.DropDownList("branch", (SelectList)ViewBag.BranchesDropDownList, new { @class = "dropdown" })  
+            
+
+            <b>Layer:</b> @Html.DropDownList("layer", new List<SelectListItem>
+                          {
+                              new SelectListItem {Text = "All", Value = ""},
+                              new SelectListItem {Text = "Access", Value = "Access"},
+                              new SelectListItem {Text = "CCFlow", Value = "CCFlow"},
+                              new SelectListItem {Text = "Core", Value = "Core"},
+                              new SelectListItem {Text = "Delivery", Value = "Delivery"},
+                              new SelectListItem {Text = "Targeting", Value = "Targeting"}
+
+                          },
+                              new { @class = "dropdown" })  
+             
+            @Html.Hidden("connectionID", "firstID")
+
+                   
+            
+        </p>
+        <div id="waitMessage" style="font-family: Tahoma; font-size: 2em; color: red; margin-top: 10px; padding-bottom: 5px">Please wait while loading all available branches</div>
+<script>
+    window.location.href = "@Url.Action("LoadBranches","FileSearch")"
+</script>
+        
+

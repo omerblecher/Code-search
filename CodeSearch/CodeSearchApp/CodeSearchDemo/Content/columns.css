@@ -1,0 +1,7 @@
+﻿.col1 {
+    width: 100%;
+}
+
+.col2 {
+    width: 90%; /* not very useful in this case as 'col2' will take the remaining */
+}

@@ -1,0 +1,54 @@
+﻿@using PagedList.Mvc
+@model CodeSearchDemo.Models.DisplayFileModel
+
+@{
+    ViewBag.Title = "Display File View";
+}
+
+
+@if(Request.UrlReferrer != null)
+{
+     <button type="button" onclick="history.go(-1); return false;" >Back</button>
+ } 
+
+<h2>@Model.FileNameForDisplay</h2>
+
+
+
+@{
+    Html.RenderAction("GetDiffBranches","Diff", new {relativeFilePath = @Model.RelativeFilePath, branch = @Model.Branch, uri = @Model.Uri});
+}
+<table style="border-spacing: 0;border-collapse: collapse;padding-bottom: 0;padding-top: 0;margin-top: 0.5em; margin-bottom: 0.5em">
+        @for (var i = 0; i < @Model.Lines.ToArray().Length; i++)
+        {
+
+            if (@Model.RowNumbers.Contains(i))
+            {
+                <tr style="text-align: left; width: 1500px; height: 0.3em;padding-top: 0;padding-bottom: 0;margin-bottom: 0.5em;margin-top: 0.5em;">
+                    <td style="font-size: 1.5em;padding-top: 0px; padding-bottom: 0px;width: 1500px;height: 0.3em;margin-bottom: 0.5em;margin-top: 0.5em;border-bottom: 1px">
+                        <pre class="before" style="padding-top: 0px; padding-bottom: 0px; width: 1500px; height: 0.3em; margin-bottom: 0.5em; margin-top: 0.5em;border-bottom: 1px"><span class="display" style="background-color:yellow;font-weight: bold;">@Model.Lines[i]</span></pre>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr style="text-align: left; width: 1500px;  height: 0.1em;padding-top: 0;padding-bottom: 0;margin-bottom: 0.5em;margin-top: 0.5em;">
+                    <td style="font-size: 1.5em;padding-top : 0px;padding-bottom: 0px;width: 1500px;height: 0.1em;margin-bottom: 0.5em;margin-top: 0.5em;border-bottom: 1px">
+                        <pre class="before" style="padding-top : 0px;padding-bottom: 0px;width: 1500px;height: 0.1em;margin-bottom: 0.5em;margin-top: 0.5em;border-bottom: 1px"><span class="display" >@Model.Lines[i]</span></pre>
+                    </td>
+                </tr>
+            }
+
+        }
+    </table>
+ 
+   
+<br />
+
+    @if(Request.UrlReferrer != null)
+    {
+        <button type="button" onclick="history.go(-1); return false;" >Back</button>
+    } 
+
+
+

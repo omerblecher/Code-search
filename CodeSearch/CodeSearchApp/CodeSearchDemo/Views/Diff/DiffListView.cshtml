@@ -1,0 +1,25 @@
+﻿@model CodeSearchDemo.Models.DiffBranchesModel
+
+@if (@Model.ComparedBranchesList.Count > 0)
+{
+    using (Html.BeginForm("CompareFiles", "Diff", FormMethod.Get, new {id = "compareForm"}))
+     {
+
+         <p> 
+         
+             @Html.Hidden("relativeFilePath", @Model.RelativeFilePath)
+             @Html.Hidden("sourceFileUri", @Model.Uri)
+             @Html.Hidden("sourceBranch", @Model.Branch)
+             <b>Select branch to compare to:</b> @Html.DropDownList("branchInfo", @Model.ComparedBranchesList, new {@class = "dropdown"})  
+            
+
+          
+             
+         
+             <input type="submit" name="SearchButton" id="submitID" value="Compare"  />
+         </p>
+     }
+}
+
+
+
